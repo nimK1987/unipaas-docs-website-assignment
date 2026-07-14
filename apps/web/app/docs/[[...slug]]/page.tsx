@@ -12,9 +12,15 @@ import { getMDXComponents } from '@/components/mdx';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { gitConfig } from '@/lib/shared';
+import { DocsHome } from '@/components/docs-home';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
+
+  // The docs landing (/docs) is a custom hero with a centered search field
+  // instead of a rendered markdown page.
+  if (!params.slug || params.slug.length === 0) return <DocsHome />;
+
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
@@ -45,11 +51,18 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 }
 
 export async function generateStaticParams() {
-  return source.generateParams();
+  return [{ slug: [] as string[] }, ...source.generateParams()];
 }
 
 export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): Promise<Metadata> {
   const params = await props.params;
+
+  if (!params.slug || params.slug.length === 0)
+    return {
+      title: 'What do you want to do today?',
+      description: 'Search the docs or jump into the Quickstart.',
+    };
+
   const page = source.getPage(params.slug);
   if (!page) notFound();
 

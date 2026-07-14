@@ -1,0 +1,5 @@
+{
+  "title": "Payment Handling",
+  "icon": "CreditCard",
+  "pages": ["index", "checkout-page", "web-sdk"]
+}

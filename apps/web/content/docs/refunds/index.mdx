@@ -1,0 +1,24 @@
+---
+title: Refunds
+description: Return funds to shoppers, in full or in part.
+---
+
+Refunds return funds to a shopper for a payment you previously captured. You can
+refund the full amount or a part of it.
+
+## Create a refund
+
+Reference the original payment and, optionally, an amount. Omit the amount to
+refund in full.
+
+```bash
+curl -X POST https://sandbox.unipaas.com/platform/refunds \
+  -H "Authorization: Bearer <PLATFORM_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{ "paymentId": "6839...c1d", "amount": 5 }'
+```
+
+<Callout title="Partial refunds">
+  Provide an `amount` smaller than the original payment to issue a partial
+  refund. You can issue multiple partial refunds up to the captured total.
+</Callout>

@@ -1,0 +1,25 @@
+---
+title: Checkout Page
+description: Redirect shoppers to a Unipaas-hosted checkout page.
+---
+
+The hosted **Checkout Page** is the fastest way to take a payment. You create a
+checkout on your server and redirect the shopper to the `shortLink` that Unipaas
+returns.
+
+## How it works
+
+1. Your server creates a checkout (see [Quickstart](/docs/getting-started/quickstart)).
+2. Unipaas returns a `shortLink`.
+3. You redirect the shopper to that link.
+4. The shopper pays on a branded, PCI-compliant page hosted by Unipaas.
+
+```bash
+curl -X POST https://sandbox.unipaas.com/platform/pay-ins/checkout \
+  -H "Authorization: Bearer <PLATFORM_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{ "amount": 25, "currency": "GBP", "country": "GB", "email": "shopper@example.com" }'
+```
+
+Because the payment happens on Unipaas infrastructure, your servers never touch
+raw card data.

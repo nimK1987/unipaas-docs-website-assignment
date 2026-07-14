@@ -1,0 +1,24 @@
+---
+title: Onboarding
+description: Create an account and collect the details needed to pay out.
+---
+
+Onboarding creates an account and collects the information Unipaas needs to
+verify it and send payouts.
+
+## Create an account
+
+```bash
+curl -X POST https://sandbox.unipaas.com/platform/accounts \
+  -H "Authorization: Bearer <PLATFORM_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{ "email": "merchant@example.com", "country": "GB" }'
+```
+
+Unipaas returns the account object with its `id` and a `status` you can track as
+verification progresses.
+
+<Callout title="Embedded onboarding">
+  You can also embed onboarding directly in your product using a scoped token.
+  See [Authentication](/docs/getting-started/authentication).
+</Callout>

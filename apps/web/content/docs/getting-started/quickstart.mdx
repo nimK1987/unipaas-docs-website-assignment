@@ -1,0 +1,72 @@
+---
+title: Quickstart
+description: Take a real payment in the Unipaas sandbox with a single server-to-server call.
+---
+
+Take a real payment in the Unipaas sandbox with a single server-to-server call —
+no vendor setup and no onboarding. You create a checkout, open the link Unipaas
+returns, and pay it with a test card. That same call hands you everything you
+need to choose your integration path next.
+
+## Before you start
+
+- A sandbox account. It is free and instant to create.
+- Your sandbox private key, from your portal account settings.
+- The sandbox base URL: `https://sandbox.unipaas.com/platform`.
+
+## Create a checkout
+
+Make one call from your server to create a checkout. It takes your private key in
+the `Authorization` header and four fields: the amount, the currency, the
+shopper's country, and their email. Amounts are in the major currency unit, so
+`10` is 10.00.
+
+<Callout type="warn" title="Keep your private key on the server">
+  This call runs on your server. It uses your private key, your secret
+  credential, which must never be exposed in the browser.
+</Callout>
+
+```bash
+curl -X POST https://sandbox.unipaas.com/platform/pay-ins/checkout \
+  -H "Authorization: Bearer <PLATFORM_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "amount": 10,
+    "currency": "GBP",
+    "country": "GB",
+    "email": "shopper@example.com"
+  }'
+```
+
+## See it work
+
+Unipaas responds with `201 Created` and the checkout object. Two fields matter
+right now:
+
+```json
+{
+  "id": "6839...c1d",
+  "status": "open",
+  "amount": 10,
+  "currency": "GBP",
+  "shortLink": "https://sandbox-checkout.unipaas.com/-0_lisK298/",
+  "sessionToken": "eyJhbGciOiJI...",
+  "expiresAt": "2026-06-25T18:30:00.000Z"
+}
+```
+
+- `shortLink` is a hosted checkout page. Open it in your browser.
+- `sessionToken` is a short-lived token for the embedded Web SDK path.
+
+Open the `shortLink`. You will see a branded, PCI-compliant checkout for the
+amount you set. Pay it with a test card to complete your first sandbox payment.
+
+## Next steps
+
+You have taken a payment. Now choose how to integrate:
+
+<Cards>
+  <Card title="Payment Handling" href="/docs/payment-handling" description="Hosted checkout, the embedded Web SDK, and client-side calls." />
+  <Card title="Accounts" href="/docs/accounts" description="Onboard and manage the accounts you pay out to." />
+  <Card title="Refunds" href="/docs/refunds" description="Return funds to shoppers, in full or in part." />
+</Cards>

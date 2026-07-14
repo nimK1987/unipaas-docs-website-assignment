@@ -1,0 +1,5 @@
+{
+  "title": "Accounts",
+  "icon": "Users",
+  "pages": ["index", "onboarding"]
+}

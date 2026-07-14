@@ -1,0 +1,19 @@
+---
+title: Web SDK
+description: Embed secure card fields directly in your own checkout.
+---
+
+The embedded **Web SDK** keeps shoppers on your page while Unipaas hosts the
+secure card fields, so you stay out of PCI scope without sending shoppers away.
+
+## How it works
+
+1. Your server creates a checkout and receives a `sessionToken`.
+2. You pass the `sessionToken` to the browser.
+3. The Web SDK renders secure, Unipaas-hosted card fields inside your page.
+4. The shopper pays without ever leaving your site.
+
+<Callout title="Use the sessionToken, not your private key">
+  The browser only ever sees the short-lived `sessionToken`. Your private key
+  stays on the server.
+</Callout>

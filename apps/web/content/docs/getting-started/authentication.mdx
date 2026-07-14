@@ -1,0 +1,33 @@
+---
+title: Authentication
+description: How API keys and scoped tokens authenticate your requests.
+---
+
+Every request to Unipaas is authenticated with a bearer credential in the
+`Authorization` header.
+
+## Private key
+
+Your **private key** is a secret, server-side credential. Use it for
+server-to-server calls such as creating a checkout.
+
+<Callout type="warn" title="Never expose your private key">
+  The private key must only ever be used from your backend. Do not ship it to the
+  browser or commit it to source control.
+</Callout>
+
+```bash
+Authorization: Bearer <PLATFORM_API_KEY>
+```
+
+## Scoped tokens
+
+For client-side calls (for example, embedded onboarding or the Web SDK), mint a
+short-lived **scoped token** on your server and pass that to the browser instead
+of the private key.
+
+## Next steps
+
+<Cards>
+  <Card title="Quickstart" href="/docs/getting-started/quickstart" description="Make your first authenticated call." />
+</Cards>
