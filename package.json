@@ -1,0 +1,11 @@
+{
+  "name": "unipaas-docs-website-assignment",
+  "version": "1.0.0",
+  "description": "Unipaas Mock Docs Website - Technical Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nimrod Kir'on",
+  "license": "ISC"
+}
