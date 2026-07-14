@@ -20,6 +20,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# sqlite (node:sqlite)
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+
 # others
 .env*.local
 .vercel
